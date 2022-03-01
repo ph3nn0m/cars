@@ -1,4 +1,4 @@
-import { Table, Column, Model, DataType, ForeignKey, BelongsTo } from 'sequelize-typescript';
+import { Table, Column, Model, DataType, ForeignKey, BelongsTo, Unique } from 'sequelize-typescript';
 import { Color } from 'src/core/enum/Color';
 
 import { Owner } from '../owners/owner.entity';
@@ -21,10 +21,11 @@ export class Car extends Model<Car> {
     })
     model: string;
 
+    @Unique(true)
     @Column({
         type: DataType.STRING(10),
         allowNull: false,
-    })
+    })    
     license_plate: string;
 
     @Column({

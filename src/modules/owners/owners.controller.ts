@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Put, Delete, Param, Body, NotFoundException, UseGuards, Request } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Param, Body, NotFoundException, UseGuards, Request, HttpCode, HttpStatus } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
 import { OwnersService } from './owners.service';
@@ -14,11 +14,13 @@ export class OwnersController {
     constructor(private readonly ownerService: OwnersService) { }
 
     @Get()
+    @HttpCode(HttpStatus.OK)
     async findAll() : Promise<OwnerEntity[]> {
         return await this.ownerService.findAll();
     }
 
     @Get(':id')
+    @HttpCode(HttpStatus.OK)
     async findOne(@Param() entity: FindOwnerDto): Promise<OwnerEntity> {
         const model = await this.ownerService.findOne(entity);
         if (!model) {
@@ -29,12 +31,14 @@ export class OwnersController {
 
     @UseGuards(AuthGuard('jwt'))
     @Post()
+    @HttpCode(HttpStatus.CREATED)
     async create(@Body() entity: CreateOwnerDto): Promise<OwnerEntity> {
         return await this.ownerService.create(entity);
     }
 
     @UseGuards(AuthGuard('jwt'))
     @Put(':id')
+    @HttpCode(HttpStatus.OK)
     async update(@BodyAndParam() entity: UpdateOwnerDto): Promise<OwnerEntity> {
         const { numberOfAffectedRows } = await this.ownerService.update(entity);
         if (numberOfAffectedRows === 0) {
@@ -45,6 +49,7 @@ export class OwnersController {
 
     @UseGuards(AuthGuard('jwt'))
     @Delete(':id')
+    @HttpCode(HttpStatus.OK)
     async remove(@Param() entity: DeleteOwnerDto) {
         const deleted = await this.ownerService.delete(entity);
         if (deleted === 0) {

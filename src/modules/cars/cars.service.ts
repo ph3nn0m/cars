@@ -30,6 +30,10 @@ export class CarsService {
         });
     }
 
+    async findOneByLicensePlate(license_plate: string): Promise<Car> {
+        return await this.carRepository.findOne<Car>({ where: { license_plate } });
+    }
+
     async delete(entity: DeleteCarDto) {
         const { id } = entity
         return await this.carRepository.destroy({ where: { id } });
