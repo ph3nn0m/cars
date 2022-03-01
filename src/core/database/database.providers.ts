@@ -6,6 +6,7 @@ import { User } from '../../modules/users/user.entity';
 import { Post } from '../../modules/posts/post.entity';
 import { Owner } from '../../modules/owners/owner.entity';
 import { Car } from '../../modules/cars/car.entity';
+import { Setting } from 'src/modules/settings/setting.entity';
 
 export const databaseProviders = [
     {
@@ -26,8 +27,8 @@ export const databaseProviders = [
                     config = databaseConfig.development;
             }
             const sequelize = new Sequelize(config);
-            sequelize.addModels([User, Post, Owner, Car]);
-            await sequelize.sync();
+            sequelize.addModels([User, Post, Owner, Car, Setting]);
+            await sequelize.sync({force: true});
             return sequelize;
         },
     },
