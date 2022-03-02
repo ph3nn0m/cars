@@ -31,7 +31,7 @@ export class PolicyBudgetDisallow implements CanActivate {
                 if(request.body.services.some( ({job}) => {
                     return colorPolicy.find( e => e.value === car.color && e.job === job )
                 })){
-                    throw new ForbiddenException('This car violates budget policy');
+                    throw new ForbiddenException('budget policy violation: "Grey car" cannot do "paint job"');
                 }
             }
         }
