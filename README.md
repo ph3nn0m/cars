@@ -1,40 +1,26 @@
- <p align="center">A progressive <a href="http://nodejs.org" target="blank">Node.js</a> framework for building efficient and scalable server-side applications, heavily inspired by <a href="https://angular.io" target="blank">Angular</a>.
- </p>
-
 ## Description
-A Simple CRUD Web API with NestJs, Postgres, Sequelize ORM. 
+A Simple CRUD Web API with NestJs, Mysql, Sequelize ORM. 
 
 ## Installation
 
 ```bash
-$ git clone https://github.com/onwuvic/nest-blog-api.git
+$ git clone https://github.com/ph3nn0m/cars.git
 ```
 
 ## Running the app
 
-- cd into `nest-blog-api`
+- cd into `cars`
 - run `npm install`
-- set up your postgres database
+- set up your database
 - rename `.env.sample` to `.env` and populate the required parameters
-- run `npm run start:dev`
+- run `npm run start`
+- run migration `npx sequelize-cli db:migrate`
 
+# CHALLENGE SERVICIO MECÁNICO DE AUTOS
 ```bash
-# development
+$ git clone https://github.com/ph3nn0m/cars.git
+$ cd cars
+$ npm install
 $ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+$ npx sequelize-cli db:migrate
 ```
-
-
-## Stay in touch
-
-- Author - Victor Onwuzor
-- Twitter - [@victoronwuzor](https://twitter.com/victoronwuzor)
-
-## License
-[MIT licensed](LICENSE).
-# cars
