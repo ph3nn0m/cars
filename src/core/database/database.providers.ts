@@ -1,12 +1,12 @@
 import { Sequelize } from 'sequelize-typescript';
-
 import { SEQUELIZE, DEVELOPMENT, TEST, PRODUCTION } from '../constants';
 import { databaseConfig } from './database.config';
 import { User } from '../../modules/users/user.entity';
-import { Post } from '../../modules/posts/post.entity';
 import { Owner } from '../../modules/owners/owner.entity';
 import { Car } from '../../modules/cars/car.entity';
 import { Setting } from 'src/modules/settings/setting.entity';
+import { Service } from 'src/modules/service/service.entity';
+import { Budget } from 'src/modules/budgets/budget.entity';
 
 export const databaseProviders = [
     {
@@ -27,7 +27,7 @@ export const databaseProviders = [
                     config = databaseConfig.development;
             }
             const sequelize = new Sequelize(config);
-            sequelize.addModels([User, Post, Owner, Car, Setting]);
+            sequelize.addModels([User, Owner, Car, Setting, Service, Budget]);
             await sequelize.sync({force: true});
             return sequelize;
         },

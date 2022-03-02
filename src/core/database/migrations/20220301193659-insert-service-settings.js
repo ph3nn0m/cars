@@ -4,37 +4,37 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     return await queryInterface.bulkInsert('settings', [
       {
-        key: 'service_change_oil_price',
+        key: 'service_price_change_oil',
         value: '1000',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        key: 'service_change_filter_price',
+        key: 'service_price_change_filter',
         value: '100',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        key: 'service_change_belt_price',
+        key: 'service_price_change_belt',
         value: '500',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        key: 'service_general_check_price',
+        key: 'service_price_general_check',
         value: '1500',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        key: 'service_paint_job_price',
+        key: 'service_price_paint_job',
         value: '3000',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        key: 'service_other_price',
+        key: 'service_price_other',
         value: '400',
         createdAt: new Date(),
         updatedAt: new Date()

@@ -6,9 +6,11 @@ import { AppService } from './app.service';
 import { DatabaseModule } from './core/database/database.module';
 import { UsersModule } from './modules/users/users.module';
 import { AuthModule } from './modules/auth/auth.module';
-import { PostsModule } from './modules/posts/posts.module';
 import { OwnersModule } from './modules/owners/owners.module';
 import { CarsModule } from './modules/cars/cars.module';
+import { ServicesModule } from './modules/service/services.module';
+import { BudgetsModule } from './modules/budgets/budgets.module';
+import { SettingsModule } from './modules/settings/settings.module';
 
 @Module({
   imports: [
@@ -16,9 +18,11 @@ import { CarsModule } from './modules/cars/cars.module';
     DatabaseModule,
     UsersModule,
     AuthModule,
-    PostsModule,
     OwnersModule,
     CarsModule,
+    ServicesModule,
+    BudgetsModule,
+    SettingsModule
   ],
   controllers: [AppController],
   providers: [AppService],

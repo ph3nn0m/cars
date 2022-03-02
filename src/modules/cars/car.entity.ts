@@ -1,9 +1,9 @@
-import { Table, Column, Model, DataType, ForeignKey, BelongsTo, Unique } from 'sequelize-typescript';
+import { Table, Column, Model, DataType, ForeignKey, BelongsTo, Unique, HasMany } from 'sequelize-typescript';
 import { Color } from 'src/core/enum/Color';
+import { Budget } from '../budgets/budget.entity';
 
 import { Owner } from '../owners/owner.entity';
-
-// Marca, Modelo, Año, Patente, Color
+import { Service } from '../service/service.entity';
 
 @Table({
     tableName: 'cars',
@@ -46,4 +46,10 @@ export class Car extends Model<Car> {
 
     @BelongsTo(() => Owner)
     owner: Owner;
+
+    @HasMany(() => Service)
+    sercices: Service[];
+
+    @HasMany(() => Budget)
+    budgets: Budget[];
 }
