@@ -1,5 +1,7 @@
 'use strict';
 
+const { json } = require("stream/consumers");
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     return await queryInterface.bulkInsert('settings', [
@@ -36,6 +38,12 @@ module.exports = {
       {
         key: 'service_price_other',
         value: '400',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        key: 'policy_budget_disallow',
+        value: JSON.stringify({ car: { color: [ { value: 'grey', job: 'paint_job' } ] } }),
         createdAt: new Date(),
         updatedAt: new Date()
       },

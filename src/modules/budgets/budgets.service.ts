@@ -15,9 +15,7 @@ import { FindBudgetDto } from './dto/findBudget.dto';
 @Injectable()
 export class BudgetsService {
 
-    constructor(@Inject(BUDGET_REPOSITORY) private readonly budgetRepository: typeof Budget, @Inject(SETTING_REPOSITORY) private readonly settingRepository: typeof Setting, @Inject(SERVICE_REPOSITORY) private readonly serviceRepository: typeof Service) { 
-    
-    }
+    constructor(@Inject(BUDGET_REPOSITORY) private readonly budgetRepository: typeof Budget, @Inject(SETTING_REPOSITORY) private readonly settingRepository: typeof Setting, @Inject(SERVICE_REPOSITORY) private readonly serviceRepository: typeof Service) { }
 
     async create(entity: CreateBudgetDto): Promise<Budget> {
         const { owner_id, car_id, services } = entity;
