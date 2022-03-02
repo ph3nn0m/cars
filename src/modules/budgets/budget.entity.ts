@@ -1,4 +1,4 @@
-import { Table, Column, Model, DataType, HasMany, ForeignKey } from 'sequelize-typescript';
+import { Table, Column, Model, DataType, HasMany, ForeignKey, BelongsTo } from 'sequelize-typescript';
 import { Car } from '../cars/car.entity';
 import { Owner } from '../owners/owner.entity';
 import { Service } from '../service/service.entity';
@@ -29,5 +29,11 @@ export class Budget extends Model<Budget> {
     total: string;
     
     @HasMany(() => Service)
-    servces: Service[];
+    services: Service[];
+
+    @BelongsTo(() => Car)
+    car: Car;
+
+    @BelongsTo(() => Owner)
+    owner: Owner;
 }

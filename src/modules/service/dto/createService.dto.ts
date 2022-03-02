@@ -15,4 +15,8 @@ export class CreateServiceDto {
 
     @IsNotEmpty()
     readonly car_id: number;
+
+    constructor(partial: Partial<CreateServiceDto>) {
+        Object.assign(this, partial);
+    }
 }

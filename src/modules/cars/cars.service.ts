@@ -7,6 +7,8 @@ import { CreateCarDto } from './dto/createCar.dto';
 import { UpdateCarDto } from './dto/updateCar.dto';
 import { DeleteCarDto } from './dto/deleteCar.dto';
 import { FindCarDto } from './dto/findCar.dto';
+import { Budget } from '../budgets/budget.entity';
+import { Service } from '../service/service.entity';
 
 @Injectable()
 export class CarsService {
@@ -18,7 +20,7 @@ export class CarsService {
 
     async findAll(): Promise<Car[]> {
         return await this.carRepository.findAll<Car>({
-            include: [{ model: Owner }],
+            include: [{ model: Owner }, { model: Budget, include: [{ model: Service }] }],
         });
     }
 
@@ -26,7 +28,7 @@ export class CarsService {
         const { id } = entity;
         return await this.carRepository.findOne({
             where: { id },
-            include: [{ model: Owner }],
+            include: [{ model: Owner }, { model: Budget, include: [{ model: Service }] }],
         });
     }
 

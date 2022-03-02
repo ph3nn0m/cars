@@ -47,9 +47,6 @@ export class Car extends Model<Car> {
     @BelongsTo(() => Owner)
     owner: Owner;
 
-    @HasMany(() => Service)
-    sercices: Service[];
-
     @HasMany(() => Budget)
     budgets: Budget[];
 }

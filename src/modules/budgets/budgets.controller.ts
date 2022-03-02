@@ -7,10 +7,15 @@ import { CreateBudgetDto } from './dto/createBudget.dto';
 import { FindBudgetDto } from './dto/findBudget.dto';
 import { DeleteBudgetDto } from './dto/deleteBudget.dto';
 import { ServicesService } from '../service/services.service';
+import { SettingsService } from '../settings/settings.service';
+import { Service } from '../service/service.entity';
+import { CreateServiceDto } from '../service/dto/createService.dto';
+import { DoesCarOwnerExist } from 'src/core/guards/doesCarOwnerExist.guard';
+import { DoesCarExist } from 'src/core/guards/doesCarExist.guard';
 
 @Controller('budgets')
 export class BudgetsController {
-    constructor(private readonly budgetService: BudgetsService, private readonly servicesService: ServicesService) { }
+    constructor(private readonly budgetService: BudgetsService, private readonly servicesService: ServicesService, private readonly settingsService: SettingsService) { }
 
     @Get()
     @HttpCode(HttpStatus.OK)
@@ -28,21 +33,10 @@ export class BudgetsController {
         return model;
     }
 
-    @UseGuards(AuthGuard('jwt'))
+    @UseGuards(AuthGuard('jwt'), DoesCarExist ,DoesCarOwnerExist)
     @Post()
     @HttpCode(HttpStatus.CREATED)
     async create(@Body() entity: CreateBudgetDto): Promise<Budget> {
         return await this.budgetService.create(entity);
-    }
-
-    @UseGuards(AuthGuard('jwt'))
-    @Delete(':id')
-    @HttpCode(HttpStatus.OK)
-    async remove(@Param() entity: DeleteBudgetDto) {
-        const deleted = await this.budgetService.delete(entity);
-        if (deleted === 0) {
-            throw new NotFoundException('This Budget doesn\'t exist');
-        }
-        return { deleted };
     }
 }

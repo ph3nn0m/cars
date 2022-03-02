@@ -4,6 +4,7 @@ import { Setting } from './setting.entity';
 import { SettingDto } from './dto/setting.dto';
 import { FindSettingDto } from './dto/findSetting.dto';
 import { SETTING_REPOSITORY } from '../../core/constants';
+import { Op } from 'sequelize';
 
 @Injectable()
 export class SettingsService {
@@ -11,6 +12,18 @@ export class SettingsService {
 
     async create(setting: SettingDto): Promise<Setting> {
         return await this.settingRepository.create<Setting>(setting);
+    }
+
+    async findAll(): Promise<Setting[]> {
+        return await this.settingRepository.findAll<Setting>();
+    }
+
+    async findAllServicePrices(): Promise<Setting[]> {
+        return await this.settingRepository.findAll<Setting>({ where: {
+            key: {
+                [Op.like]: 'service_price_%'
+            }
+        }});
     }
 
     async findOneByKey(entity: FindSettingDto): Promise<Setting> {
